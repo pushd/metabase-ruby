@@ -43,10 +43,10 @@ module Metabase
     end
 
     def connection
-      @connection ||= Faraday.new(url: @url) do |c|
-        c.request :json, content_type: /\bjson$/
+      @connection ||= Faraday.new(url: @url, ssl: {verify: false}) do |c|
+        c.request :json
         c.response :json, content_type: /\bjson$/
-        c.request :url_encoded, content_type: /x-www-form-urlencoded/
+        # c.request :url_encoded, content_type: /x-www-form-urlencoded/
         c.adapter Faraday.default_adapter
         c.headers['User-Agent'] =
           "MetabaseRuby/#{VERSION} (#{RUBY_ENGINE}#{RUBY_VERSION})"
