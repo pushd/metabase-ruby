@@ -42,7 +42,7 @@ module Metabase
     end
 
     def connection
-      @connection ||= Faraday.new(url: @url) do |c|
+      @connection ||= Faraday.new(@url, **@faraday_opts) do |c|
         c.request :json
         c.response :json
         c.request :url_encoded

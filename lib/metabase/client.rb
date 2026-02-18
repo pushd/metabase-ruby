@@ -8,11 +8,12 @@ module Metabase
     include Connection
     include Endpoint
 
-    def initialize(url:, username: nil, password: nil, token: nil)
+    def initialize(url:, username: nil, password: nil, token: nil, faraday_opts: nil)
       @url = url
       @username = username
       @password = password
       @token = token
+      @faraday_opts = faraday_opts || {}
     end
   end
 end
