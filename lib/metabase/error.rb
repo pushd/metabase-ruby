@@ -14,6 +14,7 @@ module Metabase
         when 502 then BadGateway
         when 503 then ServiceUnavailable
         when 500..599 then ServerError
+        when nil then NilStatusError
         end
       klass&.new(response)
     end
@@ -50,4 +51,6 @@ module Metabase
   class BadGateway < Error; end
 
   class ServiceUnavailable < Error; end
+
+  class NilStatusError < ServerError; end
 end
